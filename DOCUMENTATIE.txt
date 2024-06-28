@@ -1,7 +1,0 @@
-CULORI:#05D3E6,#032B8F,#039AFF,#05E6AD,#0B03FF
-
- cd \Users\alexp\Desktop\an 2 fac sem 2\proiect tehnici web
-node .
-
-475RADU1
-5432
