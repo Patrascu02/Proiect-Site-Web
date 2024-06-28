@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="keywords" content ="Nike,Jordan,Adidas,incaltaminte,sneaker,adidas,magazin de adidasi,sneakersi,adidasi,adidasi Bucuresti,sneakersi Bucuresti,Sneakers4You Bucuresti,magazin Sneakers4You,magazin de adidasi Bucuresti,adidasi Nike,adidasi Jordan,adidasi Adidas,sneakersi Nike,sneakersi Adidas,sneakersi Jordan">
+        <meta name="description" content="Descoperă cei mai cool sneakerși. Bucură-te de transport gratuit pentru orice comandă mai mare de 250 ron. Colecția de adidasi care întorc privirile o găsești pe Sneakers4You,cel mai bun magazin de adidasi din Bucuresti."><!--descrierea paginii,-->
+        <title>Sneaker - eroare</title>
+        <link rel="stylesheet" type="text/css" href="/resurse/css/eroare.css"
+        <%- include("../fragmente/head.ejs");  %> 
+
+
+    </head>
+    <body>
+        
+    <%- include("../fragmente/header.ejs");  %> 
+
+    <main>
+        <div id="err-coloane">
+			<div id="err-imag">
+				<img src="<%- locals.imagine %>" />
+			</div>
+			<section>
+				<h2><%- locals.titlu %></h2>
+				<p><%- locals.text %></p>
+			</section>
+		</div>
+    </main>
+    
+    <%- include("../fragmente/footer.ejs");  %> 
+
+
+    </body>
+</html>

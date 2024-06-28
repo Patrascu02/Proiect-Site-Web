@@ -1,0 +1,109 @@
+#banner , #watermark{
+  display:none;
+}
+
+
+@media print {
+  #banner, #watermark, #grid-pagina {
+      display: block;
+  }
+
+
+
+
+  #link-top {
+      display: none;
+  }
+
+    .container-iframe{
+      display:none;
+  }
+
+
+  #banner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 5px double black;
+    width: 50%; 
+    text-align: center;  
+    box-sizing: border-box;
+    padding: 5px; 
+  }
+
+  #watermark {
+      position: fixed;
+      width: 60%;
+      height: 10%;
+      top: 45%;
+      left: 20%;
+      text-align: center;
+      z-index: 9999;
+  }
+
+  #watermark p {
+      color: var(--culoare-inchisa);
+      font-size: 50px;
+      margin: 0;
+      transform: rotate(-30deg);
+  }
+
+  header,
+  footer {
+      page-break-before: always;
+  }
+
+  main {
+      display: block;
+  }
+
+  img,
+  video,
+  iframe,
+  a[href="#top"] {
+      display: none;
+  }
+
+  a {
+      text-decoration: none;
+      color: var(--culoare-inchisa);
+  }
+
+  h1 {
+      text-align: center;
+  }
+
+  nav ul {
+      list-style-type: none;
+      text-align: center;
+  }
+
+  nav ul li {
+      display: block;
+      position: relative;
+  }
+
+  nav ul li ul {
+      display: none;
+      position: relative;
+  }
+}
+
+  @page {
+      size: A4 portrait;
+      margin-bottom:2cm;
+      margin-top:2cm;
+      counter-increment: page;
+
+  }
+  @page:left{
+
+      margin-left:2cm;
+      margin-right:1cm;
+      border-radius: 20cm;
+  }
+  @page:right{
+
+      margin-right:1cm;
+      margin-left:2cm;
+  }

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <title>Magazin Adidasi</title>
+        <meta name="keywords" content ="Nike,Jordan,Adidas,incaltaminte,sneaker,adidas,magazin de adidasi,sneakersi,adidasi,adidasi Bucuresti,sneakersi Bucuresti,Sneakers4You Bucuresti,magazin Sneakers4You,magazin de adidasi Bucuresti,adidasi Nike,adidasi Jordan,adidasi Adidas,sneakersi Nike,sneakersi Adidas,sneakersi Jordan">
+        <meta name="description" content="Descoperă cei mai cool sneakerși. Bucură-te de transport gratuit pentru orice comandă mai mare de 250 ron. Colecția de adidasi care întorc privirile o găsești pe Sneakers4You,cel mai bun magazin de adidasi din Bucuresti."><!--descrierea paginii,-->
+
+        <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
+        <%- include("../fragmente/head") %>     
+        <script type="text/javascript" src=/resurse/js/produse.js></script>
+        <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
+       
+
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+    <script type="text/javascript" src=/resurse/js/ultimProdus.js></script>
+
+    <main>
+        <label> Nume: <input type="text" id="inp-nume"></label>
+       
+        
+        <div class="container" style="margin-left: 0;">
+           
+            
+            <div class="row row-cols-xxl-4 row-cols-sm-2">
+                
+                <div class="col form-check form-switch">
+                    <input class="form-check-input" type="radio" name="gr_rad" id="i_rad1" value="0:150">
+                    <label class="form-check-label btn btn-outline-primary" for="i_rad1">Mic(Pret &lt; 150)</label>
+                </div>
+                <div class="col form-check form-switch">
+                    <input class="form-check-input" type="radio" name="gr_rad" id="i_rad2" value="150:500">
+                    <label class="form-check-label btn btn-outline-primary" for="i_rad2">Mediu (150 &le; Pret &lt; 500)</label>
+                </div>
+                <div class="col form-check form-switch">
+                    <input class="form-check-input" type="radio" name="gr_rad" id="i_rad3" value="500:10000">
+                    <label class="form-check-label btn btn-outline-primary" for="i_rad3">Mare (10000 &le; Pret)</label>
+                </div>
+                <div class="col form-check form-switch">
+                    <input class="form-check-input" type="radio" name="gr_rad" id="i_rad4" value="toate"  checked="by_default" >
+                    <label class="form-check-label btn btn-outline-primary" for="i_rad4">Toate</label>
+                </div>
+            
+            </div>
+        </div>
+
+        <div class="container" style="margin-left: 0;">
+            <div class="row row-cols-xl-4 row-cols-sm-2 justify-content-start">
+            
+                <div class="col">
+                <button class="col-10 buton-filtrare" id="filtrare"><i class="bi bi-funnel"></i><span class="ascuns-ecran-mic">Filtreaza</span></button> 
+                </div>
+                <div class="col">
+                <button class="col-10 buton-resetare" id="resetare"><i class="bi bi-arrow-counterclockwise"></i><span class="ascuns-ecran-mic">Reseteaza</span></button><br/>
+                </div>
+                <div class="col">
+                <button class="col-10 buton-sortCrescNume" id="sortCrescNume"><i class="bi bi-sort-alpha-up"></i><span class="ascuns-ecran-mic">Sorteaza crescator dupa pret</span>    </button>
+                </div>
+                <div class="col">
+                <button class=" col-10 buton-sortDescrescNume" id="sortDescrescNume"><i class="bi bi-sort-alpha-down-alt"></i><span class="ascuns-ecran-mic">Sorteaza     descrescator</span></button>
+                </div>
+            
+            </div>  
+        </div>  
+
+
+        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="100"  max="300"> <span id="infoRange">(0)</span></label>
+        <label>Select simplu:
+            <select id="inp-brand">
+                <option id="sel-toate" selected value="toate">toate</option>
+                <% for (let opt of locals.optiuni) { %>
+                    <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                <% } %>
+            </select>
+        </label>
+        
+
+        
+        
+        <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
+        <section id="produse">
+            <h2>Produse</h2>
+            <div class="grid-produse">
+                <% for( let prod of locals.produse) { %>
+                    <article class="produs" >
+                        <h3 class="nume">Nume: <a href="/produs/<%-prod.id_produs %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                        <div class="info-prod">
+                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
+                            <p class="marime">Marime: <span class="val-marime"><%- prod.marime%></span></p>
+                            <p class="gramaj">Brand: <span class="val-brand"><%- prod.brand%></span></p>
+                        </div>
+                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                        <figure>
+                            <a href="/produs/<%-prod.id_produs %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                        </figure>
+                        <label class="selecteaza-cos">
+                            Selectează:<br/>
+                            <input type="checkbox" class="select-cos" value="<%-prod.id_produs %>" autocomplete="off">
+                        </label>
+                    </article>
+                <% }%>
+            </div>
+        </section>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Detalii produs</h2>
+                <div id="productDetails"></div>
+            </div>
+        </div>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

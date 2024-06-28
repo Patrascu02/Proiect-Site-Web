@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="ro">
+  <head>
+    <%- include("../fragmente/head.ejs") %>
+    <title>Magazin Adidasi</title>
+    <meta name="keywords" content ="Nike,Jordan,Adidas,incaltaminte,sneaker,adidas,magazin de adidasi,sneakersi,adidasi,adidasi Bucuresti,sneakersi Bucuresti,Sneakers4You Bucuresti,magazin Sneakers4You,magazin de adidasi Bucuresti,adidasi Nike,adidasi Jordan,adidasi Adidas,sneakersi Nike,sneakersi Adidas,sneakersi Jordan">
+    <meta name="description" content="Descoperă cei mai cool sneakerși. Bucură-te de transport gratuit pentru orice comandă mai mare de 250 ron. Colecția de adidasi care întorc privirile o găsești pe Sneakers4You,cel mai bun magazin de adidasi din Bucuresti."><!--descrierea paginii,-->
+
+    <style>
+        
+        body{
+            background-color: bisque;
+        }
+
+        a[href^="http"] {
+            color: var(--culoare-1); 
+        }
+
+        a[href^="http"]:active {
+            color: var(--culoare-text-selectat); 
+        }
+
+        a[href^="http"]::before {
+            content: "⮳"; 
+            font-size: 150%; 
+            margin-right: 0.2em;
+        }
+
+        
+        a[href^="http"]:hover::before {
+            color: var(--culoare-deschisa); 
+        }
+
+        a[href^="http"]:visited {
+            color: var(--culoare-2); 
+        }
+        
+        </style>
+
+</head>
+
+
+  <body >
+    <%- include("../fragmente/header.ejs") %><!--serverul executa-->
+    <main>
+      <div id="grid-pagina">
+          <section id="welcome">
+              <h2>Bine ați venit</h2>
+              
+              <%-include("../fragmente/formular-login.ejs")  %>
+              <%-include("../fragmente/useri-online.ejs")  %>
+              <%-include("../fragmente/locatie.ejs")  %>
+              <%-include("../fragmente/ora-server-client.ejs")  %>
+              <div class="container-calendar">
+              <%-include("../fragmente/evenimente.ejs")  %>
+              </div>
+              <button type="button" class="btn btn-primary btn-lg">Stil-1-mare</button>
+              <p>Ip: <%- locals.ip%></p>
+              <p>Bine ați venit la <b>Sneakers4You</b>, destinația ta numărul unu pentru cele mai noi și cele mai cool perechi de <b>adidași</b>. Cu o selecție vastă de branduri de top și cele mai recente modele de <b>sneakersi</b>, ne străduim să aducem pasionaților de <b>încălțăminte</b> sport cele mai trendy și confortabile perechi de <b>adidasi</b>. Fie că vă plac aventurile urbane sau căutați să vă evidențiați stilul în sala de sport, avem <b>adidași</b> potriviți pentru fiecare pas al drumului. Explorați colecția noastră și transformați fiecare pas într-o declarație de stil.</p>
+              <video controls preload="metadata" poster="resurse/imagini/poster.jpg" width="50%" min-width="300px" max-width="800px">
+
+                <source src="resurse/video/video.mp4" type="video/mp4" >
+                <source src="resurse/video/video.ogv" type="video/ogv">
+
+                <track default src="resurse/video/my_captions.vtt" kind="captions" srclang="ro" label="romana" />
+                <track  src="caption_eng.vtt" kind="captions" srclang="en" label="engleza" />
+
+              </video>
+              <br/>
+              <div id="reflexie">
+                <div id="text-reflectat1">
+                    Super-Adidasi!
+                </div>
+                <div id="text-reflectat2">
+                    Super-Adidasi!
+                </div>
+              </div>
+              <br/>
+              <!--<img class="fig3" src="resurse/imagini/android-chrome-192x192.png" alt="icon-site">
+              <figure id="fig1">
+                  <picture>
+                      <source srcset="./resurse/imagini/crop3.jpg" media="(max-width:700px)"/>
+                      <source srcset="./resurse/imagini/crop4.jpg" media="(max-width:1200px)"/>
+                      <img src="./resurse/imagini/1200x1200.jpg" alt=" Air Jordan 1 High Travis Scott painting" title="Sneaker painting" />
+                  </picture>
+                  <figcaption>Air jordan 1 High Travis Scott painting</figcaption>-->
+              </figure> 
+              <section id="galerie-statica">
+                <h2>Galerie</h2>
+                <div id="grid-galerie">
+                    <% 
+                        
+                        const now = new Date();
+                        const currentMinutes = now.getMinutes();
+                        let currentQuarter;
+            
+                        
+                        if (currentMinutes >= 0 && currentMinutes < 15) {
+                            currentQuarter = 1;
+                        } else if (currentMinutes >= 15 && currentMinutes < 30) {
+                            currentQuarter = 2;
+                        } else if (currentMinutes >= 30 && currentMinutes < 45) {
+                            currentQuarter = 3;
+                        } else {
+                            currentQuarter = 4;
+                        }
+            
+                        
+                        const imaginiDeAfisat = locals.imagini.filter(imag => imag.sfert_ora == currentQuarter);
+            
+                        
+                        for (let imag of imaginiDeAfisat) { 
+                    %>                            
+                        <figure>                                
+                            <picture>                                    
+                                <source srcset="<%= imag.fisier %>" media="(max-width:1200px)"/>                                    
+                                <img src="<%= imag.fisier %>" alt="<%= imag.titlu %>">                                
+                            </picture>                                                        
+                            <figcaption><%= imag.descriere %></figcaption>                            
+                        </figure>                   
+                    <% } %>   
+                </div>        
+            </section>
+          </section>
+          <section id="oferte">
+              <h2><b>Oferte adidasi</b></h2>
+              <p>Uneori, principala prioritate a achiziției unor <b>adidasi</b> este să-i găsești la reducere. Din fericire, la <b>Sneakers4You</b> vei găsi des reduceri la <b>încălțăminte</b> dintr-o gama variata <b>Nike</b>,<b>Jordan</b> si <b>Adidas</b>, și ai ocazia de a cumpăra produse grozave la un preț imbatabil.</p>
+              <figure id="fig2">
+                  <!--<picture>
+                      <source srcset="./resurse/imagini/crop6.jpg" media="(max-width:700px)"/>
+                      <source srcset="./resurse/imagini/crop5.jpg" media="(max-width:1200px)"/>
+                      <img src="./resurse/imagini/Air-Jordan-1-High-OG-University-Blue-5.jpg" alt=" Air-Jordan-1-Retro-High-University-Blue" title="Air-Jordan-1-Retro-High-University-Blue" />
+                  </picture>
+                  <figcaption>Premiul tombolei</figcaption>-->
+              </figure>   
+              <section>
+                  <h3>Tombola Air <b>jordan</b> 1 High University Blue</h3>
+                  <p>Daca esti interesat in castigarea noii perechi de <b>sneakersi</b> Air <b>jordan</b> 1 High University Blue descarca si completeaza formularul de mai jos pentru a avea sansa de a îi castiga. </p>
+                  <i class="fa-solid fa-cloud-arrow-down"></i><a href="Document.pdf" id="download" download>  Formular inscriere tombola Air jordan 1 High University Blue</a>
+                  <p><strong>Vor fii alesi aleatoriu 5 castigatori marti la ora 12:00 !!!</strong></p>
+  
+              </section>
+              <section>
+                  <h3>Oferta de black friday</h3>
+                  <p>În perioada 9-13 noiembrie, beneficiezi de un discount suplimentar de <s>10%</s> <ins>20%</ins> la toti <b>adidasii Nike</b> <abbr title="Air force 1">AF1</abbr>.  </p>
+                  <div class="container-iframe">
+                      <div class="taburi-iframe">
+                          <a href="https://www.youtube.com/embed/NAEvtexgQa0?si=4vBzqgAt2bw1k71m " id="iframe" target="ifr-video">Loose style <abbr title="Air force 1">AF1</abbr></a> 
+                          <a href="https://www.youtube.com/embed/lbJGo7JAQs8?si=YCEI5kRjX4X6jYXV" id="iframe" target="ifr-video">Curatarea  <abbr title="Air force 1">AF1</abbr></a> 
+                          <a href="https://www.youtube.com/embed/NBsDkFljl2k?si=L6RTTC4M3atd4tb3" id="iframe" target="ifr-video">Cum sa eviti creasurile la  <abbr title="Air force 1">AF1</abbr> .</a> 
+                      </div>
+                      
+                      <div class="vid">
+                      <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/NAEvtexgQa0?si=4vBzqgAt2bw1k71m" 
+                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                      </div>
+                  </div>
+                  
+              </section>
+          </section>
+          <div class="table-container">
+              <section id="orar">
+                  <h2>Orar</h2>
+                  <table id="tab-orar">
+                      <thead>
+      
+                          <tr>
+                              <th style="color: #039AFF;">Cod</th>
+                              <th style="color: #0B03FF;">Perioadă</th>
+                              <th style="color: #039AFF;">Zi</th>
+                              <th style="color: #0B03FF;">Interval dimineața</th>
+                              <th style="color: #039AFF;">Pauză de masă</th>
+                              <th style="color: #0B03FF;">Interval seară</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td style="color: #039AFF;">1</td>
+                              <td rowspan="5" style="color: #0B03FF;">Zile<br/>Lucrătoare</td>
+                              <td style="color: #039AFF;">Luni</td>
+                              <td style="color: #0B03FF;">10-12</td>
+                              <td style="color: #039AFF;">12-14</td>
+                              <td style="color: #0B03FF;">14-20</td>
+                          </tr>
+                          <tr>
+                              <td style="color: #039AFF;">2</td>
+                              
+                              <td style="color:  #039AFF;">Marti</td>
+                              <td style="color:  #0B03FF;">9-12</td>
+                              <td style="color: #039AFF">12-14</td>
+                              <td style="color:  #0B03FF;">14-21</td>
+                          </tr>
+                          <tr>
+                              <td style="color: #039AFF;">3</td>
+                              
+                              <td style="color: #039AFF;">Miercuri</td>
+                              <td style="color:  #0B03FF;">9-11</td>
+                              <td style="color: #039AFF;">11-13</td>
+                              <td style="color:  #0B03FF;">14-21</td>
+                          </tr>
+                          <tr>
+                              <td style="color: #039AFF;">4</td>
+                              
+                              <td style="color: #039AFF;">Joi</td>
+                              <td style="color:  #0B03FF;">9-11</td>
+                              <td style="color: #039AFF;">11-13</td>
+                              <td style="color:  #0B03FF;">14-21</td>
+                          </tr>
+                          <tr>
+                              <td style="color: #039AFF;">5</td>
+                              
+                              <td style="color: #039AFF;">Vineri</td>
+                              <td style="color:  #0B03FF;">9-12</td>
+                              <td style="color: #039AFF;">12-14</td>
+                              <td style="color:  #0B03FF;">14-19</td>
+                          </tr>
+                          <tr>
+                              <td style="color: #039AFF;">6</td>
+                              <td rowspan="2" style="color:  #0B03FF;">Weekend</td>
+                              <td style="color: #039AFF;">Sambata</td>
+                              <td style="color:  #0B03FF;">10-12</td>
+                              <td style="color: #039AFF;">12-13</td>
+                              <td style="color:  #0B03FF;">13-16</td>
+                          </tr>
+                          <tr>
+                              <td style="color: #039AFF;">7</td>
+                              <td style="color: #039AFF;">Duminica</td>
+                              <td style="color:  #0B03FF;">10-14</td>
+                              <td style="color: #039AFF;">-</td>
+                              <td style="color:  #0B03FF;">inchis</td>
+                          </tr>
+                      </tbody>
+                      <tfoot><tr><td colspan="6" style="color: #039AFF;">Închis cu ocazia sărbătorilor legale .</td></tr></tfoot>
+                  </table>
+                  <br/>
+                  <br/>
+                  <div id="imagine"></div>
+              </section>
+          </div> 
+          <section id="calendar-evenimente">
+              <h2>Evenimente</h2> <p><time datetime="2023-01-05">5 ianuarie 2023</time></p>
+  
+              <p><time datetime="2023-07-05">5 iulie 2023</time> Lansarea primei perechi de air force 1 supreme din Romania!!</p>
+              <p><time datetime="2023-09-15">15 septembrie 2023</time>Petrecere cu dj in magazin si oferte la adidasi.</p>
+              <p><time datetime="2023-12-20">20 decembrie 2023</time> Personalizarea adidasilor alaturi de Graure.</p>
+              <p><time datetime="2023-12-28">28 decembrie 2023</time> Targ de adidasi.</p>
+          </section>
+          <section id="utilizatori-online">
+              <h2>Utilizatori Online</h2>
+              <ul>
+                  <li>Utilizator 1</li>
+                  <li>Utilizator 2</li>
+                  <li>Utilizator 3</li>
+              </ul>
+          </section>
+          <section id="date-utilizator">
+              <h2>Date Utilizator și Statistici</h2>
+              <div class="detalii-utilizator">
+                  <br/>
+                  <h3>Detalii Utilizator</h3>
+                  <p><strong>Nume:</strong> John Doe</p>
+                  <p><strong>Email:</strong> johndoe@example.com</p>
+                  <p><strong>Adresă de Livrare:</strong> Str. Exemplu, Nr. 123, Oraș, Cod Poștal 123456</p>
+              </div>
+              <div class="statistici-magazin">
+                  <br/>
+                  <h3>Statistici Magazin</h3>
+                  <ul>
+                      <li><strong>Număr de Comenzi:</strong> 100</li>
+                      <li><strong>Total Vânzări:</strong> $10,000</li>
+                      <li><strong>Produsul Cel Mai Cumpărat:</strong> Nike Air Max 90</li>
+                  </ul>
+              </div>
+          </section>
+          <section id="anunturi">
+              <h2>Anunțuri</h2> <p><time datetime="2022-01-05">5 ianuarie 2022</time> <strong>No more Covid!!!!</strong></p>
+             
+
+              <hr class="hr-stilizat">
+              <p><time datetime="2020-07-05">5 iulie 2020</time> Am adăugat o prăjitură noua în meniu</p>
+              </hr>
+              <hr class="hr-stilizat">
+              <p><time datetime="2020-09-15">15 septembrie 2020</time> Am adăugat un fursec nou în meniu</p>
+              </hr>
+              <hr class="hr-stilizat">
+              <p><time datetime="2020-12-20">20 decembrie 2020</time> Nu avem nimic de anunțat, dar ne era dor de voi.</p>
+              </hr>
+              <hr class="hr-stilizat">
+              <p><time datetime="2020-12-28">28 decembrie 2020</time> Am adăugat o prăjitură noua în meniu</p>
+              </hr>
+              <hr class="hr-stilizat">
+              <p><time datetime="2021-01-01">1 ianuarie 2021</time> Un an nou fericit!</p>
+              </hr>
+              <hr class="hr-stilizat">
+              <p><time datetime="2021-02-11">11 februarie 2021</time> Studiile au arătat că prăjiturile sunt cele mai sănătoase alimente. 
+                  E adevărat că doar studiile noastre, dar astea sunt detalii. </p>
+              </hr>
+
+          </section>
+          <section id="date-site-server">
+              <h2>Date despre Site și Server</h2>
+              <br/>
+              <div class="detalii-site">
+                  <h3>Detalii Site</h3>
+                  <ul>
+                      <li><strong>Nume Site:</strong> Sneakers4You</li>
+                      <li><strong>URL:</strong> <a href="https://www.sneakers4you.com" >www.sneakers4you.com</a></li>
+                      <li><strong>Limba:</strong> Română</li>
+                      <li><strong>Platformă:</strong> WordPress</li>
+                  </ul>
+              </div>
+              <div class="detalii-server">
+                  <h3>Detalii Server</h3>
+                  <ul>
+                      <li><strong>Gazdă:</strong> HostGator</li>
+                      <li><strong>Adresă IP:</strong> 192.0.2.1</li>
+                      <li><strong>Uptime:</strong> 99.9%</li>
+                  </ul>
+              </div>
+          </section>
+          
+      </div>
+      
+      <div id="watermark">
+          <p>Patrascu<br>Alexandru</p>
+      </div>
+  </main>
+    <%- include("../fragmente/footer.ejs") %>
+  </body>
+    
+</html>

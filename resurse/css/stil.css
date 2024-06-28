@@ -1,0 +1,410 @@
+body{
+    --culoare-fundal:#05D3E6 ;
+    --culoare-inchisa:#032A8E;
+    --culoare-deschisa:#05E6AD;
+    --culoare-1:#039AFF;
+    --culoare-2:#0B03FF;
+    --culoare-text:black;
+    --culoare-text-selectat:white;
+    
+    --dim-spatiere:100px;
+    padding-left: var(--dim-spatiere);
+    padding-right: var(--dim-spatiere);
+    padding-top: 0px;
+}
+
+body.dark{
+  --culoare-mov:rgb(31, 31, 31);
+  --culoare-roz-inchis:rgb(64,27,66);
+  --culoare-roz-inchis-t:rgb(64,27,66,0.5);
+  --cl-marcare:rgb(81,43,81,0.5);
+  --cl-light-t:rgba(255,255,255,0.2);
+  --cl-text:white;
+  text-shadow:0px 0px 2px black,0px 0px 1px black,0px 0px 1px black;
+  --imag-body-backgr:url("../imagini/background-bomboane-dark.jpg");
+  --gradient-body:linear-gradient(transparent, transparent 25%, rgba(255,255,255,0.5) 50%, transparent 75%, transparent);
+  --culoare-fundal: rgb(111, 0, 155);
+  background-color: #032A8E;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 35px; 
+  overflow: hidden;
+  
+}
+
+.theme-toggle i {
+  position: absolute;
+  top: 40%;
+  left:5%;
+  right: 5%;
+  font-size: 14px;
+  transition: transform 0.5s ease;
+  
+}
+
+.dark-mode .theme-toggle i:first-child {
+  transform: translateX(-100%); 
+}
+
+.theme-toggle i:last-child {
+  transform: translateX(100%); 
+}
+
+
+
+
+header {
+  position: relative;
+}
+
+#container {
+  position: relative;
+}
+
+#text-reflectat {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  transform-origin: 0 0;
+  transform: rotateX(180deg) skew(40deg) scaleY(0.5) translate(20px, -25px);
+  opacity: 0.55;
+ 
+}
+
+#text {
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  position: relative;
+  
+}
+
+/* Stilizare pentru interacțiunea cu cursorul */
+#container:hover #text,
+#container:hover #text-reflectat {
+  color:var(--culoare-deschisa); /* Schimbare culoare la interacțiunea cu cursorul */
+}
+
+
+
+
+
+/*al doilea*/
+#reflexie{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  margin-bottom: 6em;
+  color: var(--culoare-deschisa);
+  transition: all 0.5s linear;
+}
+
+
+#text-reflectat1, #text-reflectat2{
+flex:1;
+font-size: 40px;
+}
+
+#text-reflectat1{
+text-align: right;
+margin-right: 0;
+transform-origin: top right;
+transform:skew(20deg) rotateZ(-25deg);
+}
+
+#text-reflectat2{
+margin-left: 0;
+transform-origin:top left;
+transform: rotateY(180deg) skew(-20deg) rotateZ(-28deg) translate(-55%,-70%);
+}
+
+#reflexie:hover{
+color:var(--culoare-inchisa);
+}
+
+
+
+#imagine{
+	position:relative;
+	background-image:url("http://irinaciocan.ro/imagini/plante.jpg");
+	background-size:cover;
+	width:500px; 
+	height: 500px;
+	filter:brightness(200%) grayscale(0) ;
+	transition:all 2s linear;
+}
+
+#imagine:after, #imagine:before{
+	content:" ";
+	position:absolute;
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	
+	transition:all 2s linear;
+}
+
+#imagine:after{
+	background-color:rgb(0,0,255);
+	mix-blend-mode:lighten;
+}
+
+#imagine:before{
+	background-color:rgb(205,0,255);
+	mix-blend-mode:darken;
+}
+
+#imagine:hover:after {
+  background-color: rgba(135, 206, 235, 0.3); 
+}
+
+#imagine:hover:before {
+  background-color: rgba(140, 208, 140, 0.2); 
+}
+
+
+#imagine:hover{
+	filter: brightness(150%) grayscale(0) hue-rotate(120deg); /* Atenuarea luminozității și rotirea culorii pentru a aduce nuanțe de albastru-verzui */
+}
+
+
+
+
+
+#banner-1 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 25vw; 
+  height: 25vw; 
+  background-color: #999933; 
+  color: #ffffff; 
+  opacity: 0; 
+  transition: opacity 0.75s, background-color 0.75s; 
+  animation: showBanner 5s forwards;
+}
+
+#ok_cookies {
+  background-color: #ffffff; 
+  color: #336699; 
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+#ok_cookies:hover {
+  background-color: #64f901;
+}
+
+
+@keyframes showBanner {
+  0% {
+    transform: translate(-100%, 100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.75;
+  }
+}
+
+
+
+
+
+
+
+
+p,li{
+    background-color:var(--culoare-deschisa) ;
+    font-family: "Playfair Display", serif;
+}
+
+
+h2{
+    text-decoration:underline;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h3{
+    text-decoration:underline;
+    text-shadow: 2px 2px 4px #199298;
+    font-style: italic;
+}
+
+/*vtt*/
+track {
+  background: linear-gradient(to bottom, var(--culoare-2), #666666); /*fundal pt subtritare*/
+  color: transparent;
+  background-clip: text;/*il aplica doar pe text fundalul*/
+  display: block;
+  white-space: pre-line; /*pt spatii sa fie in formatul din fis. vtt*/
+}
+
+::cue {
+  background: linear-gradient(to bottom,var(--culoare-2), #666666);
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+/*stilizare linkuri*/
+#linkuri ,#download{
+  position: relative;
+  display: inline-block;
+  text-decoration: underline;
+  color: var(--culoare-1);
+  transition: color 0.3s ease;
+}
+
+#linkuri::before,#download::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #10f3ffa9;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+#linkuri:hover::before ,#download:hover::before{/*cand ssuntem cu click ul pe ele*/
+  width: 95%;
+  height: 80%;
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+#linkuri:active,#download:active{
+  color:var(--culoare-text-selectat);
+  border:2px solid var(--culoare-text);
+}
+
+
+#linkuri:visited,#download:visited{
+  color:var(--culoare-2);
+}
+
+
+#link-top{
+    position:fixed;
+    bottom:0.3em;
+    opacity:0.5;
+    left:0.3em;
+    width:3rem;
+    box-sizing: border-box;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    border:5px solid transparent;
+    border: top color transparent;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background: #032A8E(220,220,220);
+    text-decoration: none;
+    /*transition: transform 1s linear,opacity 3s linear;*/
+    transition: all 1s;
+    box-shadow: 0px 0px 5px 5px #032A8E inset;
+    color:#032A8E;
+  }
+  #link-top:hover{
+    opacity:1;
+  }
+  #triunghi{
+    font-size: x-large;
+    vertical-align: top;
+    transition:all 1s linear;
+  }
+
+  #triunghi:hover{
+    transform:scale(1.5,1.5)
+    
+  }
+
+#tab-orar td ,#tab-orar th{
+  border :1px solid black;
+}
+
+  /* Culorile pentru coloane 
+#tab-orar   th:nth-child(even),#tab-orar td:nth-child(even)   {
+  color: #039AFF; /* Culoare pentru textul pe coloana pară 
+}
+#tab-orar th:nth-child(odd),#tab-orar td:nth-child(odd)  {
+  color: #0B03FF; /* Culoare pentru textul pe coloana impară 
+}
+
+/* Stil pentru border */
+#tab-orar {
+  border: 5px double #032A8E; /* Border dublu cu grosime de minim 5px */
+  border-collapse: collapse; /* Suprapunere a bordurilor celulelor */
+}
+#tab-orar td {
+  border: 1px solid #032A8E; /* Grosimea borderului celulelor */
+  transition: all 0.75s; /* Tranziție pentru grosimea borderului */
+}
+
+/* Efectul la hover */
+#tab-orar tbody tr:hover td {
+  background-color: #05E6AD; /* Schimbarea culorii de background */
+  color: black; /* Schimbarea culorii textului */
+  border-width: 5px; /* Cresterea grosimii borderului */
+  transition: all 0.75s;
+}
+
+@media only screen and (max-width: 800px) {
+  .table-container {
+      overflow-x: scroll;
+     /* width:50%;*/
+  }
+}
+
+
+
+.container-iframe {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  box-sizing: border-box; 
+  margin: 0 auto;
+}
+
+.container-iframe iframe {
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.taburi-iframe {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  box-sizing: border-box; 
+}
+
+.taburi-iframe > a {
+  display: block;
+  border: 1px solid #032A8E;
+  background-color: transparent; 
+  margin-left: 0.8em; 
+  padding: 0.6em;
+  border-top-left-radius: 5pt;
+  border-top-right-radius: 5pt;
+  box-shadow: 0px 0px 10px 5px #05E6AD; 
+  transition: background-color 0.3s;
+}
+
+.taburi-iframe > a:hover {
+  background-color: #05E6AD; 
+}
+
+.taburi-iframe > a:last-child {
+  margin-bottom: 0;
+}
+
+.vid {
+  margin-top: 20px; 
+}

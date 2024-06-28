@@ -1,0 +1,67 @@
+{
+	"cale_galerie":"resurse/imagini/galerie-statica",
+	"imagini": [
+		{
+			"fisier":"poza1.png",
+			"titlu":"Air jordan 1 high",
+			"descriere":"Air jordan 1 high orange and black",
+			"sfert_ora":"3"
+		},
+		{
+			"fisier":"poza2.png",
+			"titlu":"Air force 1 low",
+			"descriere":"Air force 1 low blue ",
+			"sfert_ora":"3"
+			
+		},
+		{
+			"fisier":"poza3.png",
+			"titlu":"Air force 1 low",
+			"descriere":"Air force 1 low white",
+			"sfert_ora":"3"
+		},
+		{
+			"fisier":"poza4.png",
+			"titlu":"Air jordan 1 high",
+			"descriere":"Air jordan 1 high red off-white",
+			"sfert_ora":"3"
+		},
+		{
+			"fisier":"poza5.png",
+			"titlu":"Air jordan 1 high",
+			"descriere":"Air jordan 1 high blue off-white",
+			"sfert_ora":"3"
+		},
+		{
+			"fisier":"poza6.png",
+			"titlu":"Nike air more money",
+			"descriere":"Nike air more money brown",
+			"sfert_ora":"3"
+		},
+		{
+			"fisier":"poza7.png",
+			"titlu":"Adidas yeezy",
+			"descriere":"Adidas yeezy zebra",
+			"sfert_ora":"4"
+		},
+		{
+			"fisier":"poza8.png",
+			"titlu":"Air jordan 1 high",
+			"descriere":"Air jordan 1 high blue ",
+			"sfert_ora":"3"
+		},
+		{
+			"fisier":"poza9.png",
+			"titlu":"Air jordan 5 high",
+			"descriere":"Air jordan 5 high x Cactus Jack Travis Scott",
+			"sfert_ora":"1"
+		},
+		{
+			"fisier":"poza10.png",
+			"titlu":"Air force 1 low",
+			"descriere":"Air force 1 low white and black",
+			"sfert_ora":"2"
+		}
+		
+	]
+}

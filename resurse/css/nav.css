@@ -1,0 +1,116 @@
+/* Stilurile pentru meniu */
+nav{
+    --inaltime-meniu:2.5em;
+    --latime-buton:150px;
+    height: var(--inaltime-meniu);
+    background-color: var(--culoare-deschisa);
+}
+
+/* Ascunderea butoanelor de hamburger */
+#hamburger,#ch-menu{
+    display: none;
+}
+
+/* Stilurile pentru butonul de acasă */
+#acasa
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--culoare-deschisa);/* Setarea culorii textului */
+}
+
+/* Stilurile pentru meniul principal */
+.meniu
+{
+    display: flex;
+}
+
+/* Stilurile pentru butonul de acasă*/
+#acasa_mediu
+{
+    display: flex;
+    color:var(--culoare-text);
+}
+
+/* Schimbarea culorii textului la hover pentru butonul de acasă*/
+#acasa-mediu:hover span,#acasa:hover{
+    color:var(--culoare-text-selectat);
+}
+
+/* Stilurile pentru submeniul butoanelor din meniu */
+#acasa_tip
+{
+    display: flex;
+}
+
+
+
+/* Stilurile pentru meniul principal și submeniuri */
+.meniu,.meniu ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--culoare-deschisa);
+    transform-origin:50% 0;
+}
+
+/* Stilurile pentru fiecare buton din meniu */
+.meniu li{
+   
+    width:var(--latime-buton);
+    height: var(--inaltime-meniu);
+    text-align:center;
+}
+
+
+
+.meniu.li:hover #acasa_tip{
+    color:var(--culoare-text-selectat);
+
+}
+
+
+/* Stilurile pentru linkurile și div-urile din meniu */
+.meniu li >div,.meniu li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    line-height: var(--inaltime-meniu);
+    color:var(--culoare-text);
+    text-decoration: none;
+    box-sizing: border-box;
+    transition:all 1s linear;
+}
+
+/* Schimbarea culorii textului la hover pentru butoanele din meniu */
+.meniu li:hover>div, .meniu li:hover>a {
+    /*background-color: var(--culoare-inchisa);*/
+    color:var(--culoare-text-selectat);
+
+}
+
+/*aparitie submeniu*/
+.meniu li:hover>ul{
+    display: block;
+    position: absolute;
+    z-index:100;
+    animation: animatie_submeniu 1s linear 1 forwards;/*1s-sa se intample 1s, linear - o sg data ,forwards - sa ramana*/
+    transform-origin: center top;/*sa inceapa de sus nu din mijloc*/
+}
+
+/* submeniu */
+.meniu ul{/*> e fiu direct si spatiu oruunde in comtainer*/
+    display: none;
+    opacity: 0;
+    transform: scale(0,0);/*sa fie invizibil initial*/
+}
+
+/* Definirea animației pentru afișarea submeniului */
+@keyframes animatie_submeniu{
+    100%{
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}

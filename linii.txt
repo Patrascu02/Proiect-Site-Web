@@ -1,0 +1,11 @@
+et 4
+-->task videouri--vtt in index ejs linia 61,stil.css linia 233-250
+-->->task linkuri--stil.css(#linkuri),footer.ejs(id ="linkuri") + in index.ejs linia 12-39 pt stilizare ;
+>linia 827 index.js cererea pt fiecare fis ejs.
+
+et5
+
+>IMAGINE DUOTONE->#imagine in still css 99-141 si index.ejs;
+->Titlu reflectat in stil.css si titlu reflectat1 si index.ejs 
+->PT GALERIE-STATICA IN INDEX.EJS->GALERIE STATICA;galerie statica.css,galerie.json
+->Hr->hr-stilizat in layout.css linia 21

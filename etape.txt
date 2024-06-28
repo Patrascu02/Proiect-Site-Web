@@ -1,0 +1,364 @@
+ETAPA 3
+
+NAV700
+
+fadeinmenu
+
+
+
+------------------ETAPA 4----------------------------------------------------------------------------------------------
+
+->TASK VIDEOURI--vtt in index ejs linia 61,stil.css linia 233-250
+	--controls: Acest atribut face ca playerul video să afișeze controale de redare (play, pauză, volum, etc.) pentru utilizator.
+
+	--preload="metadata": Indică browserului să preîncarce doar metadatele video-ului (de exemplu, durata clipului) și nu întregul fișier video.
+ 		Acest lucru poate ajuta la economisirea lățimii de bandă și la îmbunătățirea timpului de încărcare a paginii.
+
+	--poster="resurse/imagini/poster.jpg": Specifică o imagine de afișaj care va fi afișată înainte de redarea video-ului.
+
+	--align:right in vtt ca sa apara subtiatrarea in dreapta
+
+	--cue :: Pseudoelementul CSS care stilizează cuvintele subtitrării. Este specific pentru subtitrările video
+
+	--background: linear-gradient(to bottom, var(--culoare-2), #666666);: Similar cu stilul de fundal aplicat elementului <track>, definește un gradient liniar de sus în jos pentru textul subtitrării.
+	
+	--webkit-background-clip: text;: asigura compatibilitatea cu browserele bazate pe Webkit, cum ar fi Safari și versiunile mai vechi de Chrome.
+
+->TASK LINKURI--stil.css(#linkuri),footer.ejs(id ="linkuri") + in index.ejs linia 12-39 pt stilizare linkuri externe;
+	1)
+	--position: relative;: Setează poziționarea relativă pentru a permite poziționarea absolută a pseudoelementelor ::before.
+	--display: inline-block;: Transformă elementele într-un bloc inline, permițând aplicarea dimensiunilor și marginilor.
+	2)
+	--active:pt atunci cand dam click pe link;
+	--content: "";: Creează un pseudoelement gol.
+	--z-index: -1;: Asigură că pseudoelementul se află în spatele textului linkului.
+
+
+->linnia 827 index.js cererea pt fiecare fis ejs.
+->initErori in index.js
+	--fs.readFileSync citește sincron conținutul unui fișier.
+	--path.join(__dirname,"resurse/json/erori.json") obține calea completă a fișierului JSON.
+	--.toString("utf-8"): Convertește conținutul fișierului din buffer în string
+
+	--JSON.parse(continut): Parsează stringul JSON și îl convertește într-un obiect JavaScript.
+	--obGlobal.obErori: Stochează obiectul parsat într-o variabilă globală obGlobal.
+
+	--for (let eroare of obGlobal.obErori.info_erori): Iterează prin fiecare eroare din lista info_erori a obiectului obErori.
+	--eroare.imagine=path.join(obGlobal.obErori.cale_baza,eroare.imagine): Actualizează calea imaginii 
+	
+
+->erori.json,eroare.ejs
+->template erori:
+	app.get("/*", function(req, res){
+	afisareEroare(res,403);
+	}
+
+
+	
+
+->obiect:prop(in JSON)
+	!!intre:
+		-{}->obiect
+		-""->string
+		-[]->vector
+		-[{}]vector de obiecte
+
+->"status":true (boolean)
+-><% locals.titlu %>,<% locals.imagine %>->date din json si le captam in locals ,trimite date spre template din json
+
+->function(req,res)
+
+!!->bibiliotecile le includem cu "require" in js;
+
+!!->dif. intre sync si async:
+	-sync -se sincronizeaza cu alta functie
+	-async-in paralel cu alta functie
+
+->"+" prbleme la / ,mai bine path.join pt a face sist. de operare sa inteleaga;
+
+->obGlobal={
+	obErr:null;//obErr e campul iar null proprietatea;
+
+}
+
+
+
+------------------------------------ETAPA 5-------------------------------------------------
+->compSCSS  compileazaScss in index.js
+	--mai intai luam si vedem daca este fis scss daca este il facem css schimbandu i extensia,dupa verificam daca are cale abs
+
+	--Dacă caleScss nu este absolută, se convertește într-o cale absolută folosind obGlobal.folderScss.
+	--Dacă caleCss nu este absolută, se convertește într-o cale absolută folosind obGlobal.folderCss.
+	
+	--facem calea catre folderul de backup,daca nu exista il afce recursiv.
+
+	--Dacă fișierul CSS există deja, se face o copie de rezervă în folderul de backup.
+	--Se compilează fișierul SCSS folosind sass.compile, generând și un sourceMap.
+	-- (rez.css) este scris în fișierul CSS specificat.
+	
+	--fs.readdirSync(obGlobal.folderScss) citește toate fișierele din folderul specificat și le pune într-un array vFisiere.
+	--Pentru fiecare fișier din array, dacă extensia este .scss, se apelează funcția compileazaScss pentru a-l compila
+
+	--fs.watch urmărește folderul specificat pentru modificări (change) sau redenumiri (rename).
+	--Dacă un fișier este schimbat sau redenumit, se determină calea completă a fișierului modificat.
+	--Dacă fișierul există la noua cale,recompilam prin compileazaScss.
+	--fswatch face cand deschizi serverul
+
+
+
+->IMAGINE DUOTONE->#imagine in still css 99-141 si index.ejs;
+
+->TITLU REFLECTCAT in stil.css si titlu reflectat1 si index.ejs,reflexie e containerul 
+	--transform-origin: top right;: Setează punctul de origine al transformării la colțul drept-sus.
+	--transform: skew(20deg) rotateZ(-25deg);: Aplică o deformare (skew) de 20 de grade și o rotire în jurul axei Z de -25 de grade.
+	--rotateY(180deg): Rotește elementul în jurul axei Y, inversându-l orizontal.
+	--translate(-55%, -70%);: Translează elementul cu 55% spre stânga și 70% în sus.
+
+->PT GALERIE-STATICA IN INDEX.EJS->GALERIE STATICA;galerie statica.css,galerie.json
+
+->HR->hr-stilizat in layout.css linia 21
+	--to bottom: Direcția gradientului este de sus în jos.
+	--var(--culoare-fundal): Începe cu culoarea de fundal.
+	--var(--culoare-2) 3px: La 3 pixeli de la început, se schimbă la culoarea definită de var(--culoare-2).
+	--var(--culoare-2) 3px, var(--culoare-2) 4px: Între 3 pixeli și 4 pixeli, culoarea rămâne var(--culoare-2), creând o bandă de 1 pixel.
+	--Adaugă o margine verticală de 20 de pixeli deasupra și dedesubtul elementului <hr>. Acesta creează spațiu între elementul <hr> și alte elemente din pagina web.
+	--Rotunjește colțurile elementului la un radius de 10 pixeli. Aceasta adaugă un aspect mai blând și mai estetic la linia orizontală.
+	--border:none---Elimină orice bordură implicită a elementului <hr>. De obicei, un <hr> are o linie subțire ca bordură, dar aceasta este eliminată pentru a aplica stilul personalizat.
+
+->aspect ratio->raportul dintre inaltime si latime;
+->in js poti adauga campuri pe parcurs prin ob.campnou si creeaza campnou atunci pe loc.
+
+->[nume fis,ext]=imag.fisier.split(".");
+	-nume fis---poza (numele pozei)
+	-png     ---extensie
+	-imag.fisier.split(".")---imparte stringul in 2 stringuri prin punct;
+
+
+->_dirname->folderul unde a fost facut proiectul 
+
+->"?."--daca exista imi da valoarea pt "ob?.";
+      --daca nu exista imi da fals;
+
+
+->la click pe btn_filtrare vreau sa selectez inp-nume(unde cauti) + trim (pt spatii)	
+
+->getsElementsbyClassName->pt ca au aceeasi clasa("produs")
+
+->let cond 1 = ValNume.startswith(inp-nume) 
+	->ValNume--numele prod
+	->inp-nume--cautarea
+	->in conditia 1 verificam ca cautare=rez adica ca numele cautat este cel la care ne aflam!!
+
+->innerHtml->trage Html ul pt sectiunea respectiva ;
+
+->scrie "checked" la "toate" ,de aia e selectat by default;
+
+->let valprt=...(ii ia val de pret si il testeaza cu min si max respectiv(cel bifat) si vede daca se incadreaza)!!
+
+->info-range -($(this.value))->seteaza val de pe slider;
+
+->ValPret>inpPret
+	-ValPret--Pretul prod
+	-inpPret--cat tragi pe slider;
+
+!!!!!!!!!!!
+->inp---SELECTAT DE CLIENT;
+->val---CE E IN PAGINA
+!!!!!!!!!!!
+
+->">"-COPII DIRECTI 
+->basename ->imag.png(ia numele fisierului din cale)
+
+
+!!!!!!!
+->recursiv:true ----PT A AVEA SI RESURSE CSS
+
+->customizare_bootstrap.scss pt varibile
+
+------------ETAPA 6------------------------------------------------------------------------------------------------------------------------------------ 
+
+
+
+produse js si ejs 80-104 si index.js /produse
+
+--inp-pret bara de pret onchange sa modific val pe bara.
+--inpprt butoane sus
+
+doc de filtrare
+	--produs.getElementsByClassName("val-nume")[0]: Selectează primul element cu clasa val-nume din elementul produs
+	
+	--parseInt(...innerHTML): Convertește conținutul HTML al elementului cu clasa val-pret în număr întreg.
+	
+app get /produse 
+	--app.get("/produse", function(req, res) {...}): Definește o rută GET pentru calea /produse. Funcția callback va fi executată atunci când serverul primește o cerere GET la această adresă.
+	--req: informații despre cererea HTTP
+	--res: trimite un răspuns clientului.
+
+	--req.query: Conține parametrii de query trimiși în URL (ex: /produse?brand=Nike).
+
+	--"select * from unnest(enum_range(null::brand_produse))": Interogare SQL care obține toate valorile din enum-ul brand_produse
+
+	--rezOptiuni conține rezultatele Querryului
+
+	--  client.query(`select * from adidasi ${conditieQuery}`, function(err, rez)->selecteaza adidasii filtrati de conditieQuery
+
+conditie Query ='where tip_produs'=`${req.query.tip}`
+
+->enum_range :enumereaza toate  val,te ajuta sa nu introduci manual
+
+
+->.rows ->rez queryului
+
+->res.render("pagini/produse",{produse:rez.rows,optiuni:rezOptiuni.rows})
+	--toate datele din b.d si le stocam in locals
+	--se face un obiect cu aceste campuri:-locals.optiuni,locals.produs---locals pt a le accesa
+	--rezOptiuni.rows--enum de branduri
+
+->window.addEventListener("load",function())
+	--asculta evenim. de incarcare a paginii "/produse"
+	--console log(document.getElementbyID("/produse".innerHTML))--cauta tagul produse si afiseaza tot legat de produse
+
+STILIZARE INPUTURI customizare_bootstrap.scss,produse.ejs
+
+
+->bootstrap input ---toate numele acelea cu col cu rws sunt niste clase predefinite in bootstrap .
+->customizare_bootstrap.scss pt stilizare +css
+->produse.ejs 58-64 pt butoane inputuri + 23-45 ,cam tot
+-><div class="row row-cols-xxl-4 row-cols-sm-2"> pe ecrane mari 4 col pe mici 2;
+-> <button class="col-10 buton-resetare" acest buton va ocupa doar 10 din cele 12 by def din bootstrap;
+
+
+->LIGHT/DARK THEME  in stil.css ,body.dark,dark-mode .theme-toggle + tema.js,linia 3-9 in header.ejs
+	--btn btn-outline ....clasa predefinita in bootstrap si ea butonul sa fie transparent cu un contur intunecat;
+	--local storage e ceva predefinit in js;
+	--/6-11/daca userul lasa pe dark si inchide pagina sa o deschida tot cu dark urm data adaugand niste clase css pe body
+	--let darkMode = localStorage.getItem("darkMode");//var java predefinita
+	--i este icon din general css,se refere la iconite
+	--dark este ce e in body.dark
+
+BONUSURI:
+
+17)SETURI->INDEX.JS LINIA 263-298,SETURI.EJS,119-160 in layout.css,produs.ejs 
+	i)index-->1)definim ruta pentru a specifica produsul dorit. req.params.id_produs va conține valoarea acestui parametru.
+
+	     -->Se execută un query pentru a selecta toate coloanele din tabelul adidasi unde id_produs =valoarea produsului dorit
+	     -->se execută un al doilea query  pt a obtine numele setului s.nume_set si id ul setului(b.id_set)
+	     -->rezQuerySet.rows.length > 0 . Dacă da, înseamnă că produsul are asociat cel puțin un set.,daca nu, apartine.set nu are set deci ii dam val null.
+	     -->trimitem datele spre pagina produsului
+
+	2)--Se execută un query care  selectează numele și descrierea setului, id-ul setului, id-ul produsului și detaliile produsului.
+	  --Dacă query-ul este executat cu succes, rezultatele sunt trimise către pagina seturi pentru a fi afișate
+
+	ii)seturi.ejs-->1)-->groupedSets este un obiect folosit pentru a grupa produsele în funcție de id_set.
+		  -->locals.seturi array de produse din baza de date
+		  -->Fiecare produs este inspectat, și dacă produsul nu are niciun set , creeam un obiect cu cheia id_set care conține numele si descrierea setului și un array gol pentru produse (products).
+		  -->adaugam produsul in vectorul de produse al setului respectiv
+.
+		  2)	--Object.keys(groupedSets).forEach(setId => { ... }): parcurge fiecare cheie din groupedSets, care reprezintă id ul fiecărui set.
+		    	--set = groupedSets[setId];: Variabila set primește obiectul asociat setului curent.
+			--totalPret suma totală a prețurilor tuturor produselor din acel set.
+			-- set.products.forEach(product => { ... }), se adaugă prețul fiecărui produs la totalPret.
+			--n = set.products.length;:  numărul de produse din acel set.
+			--discount = Math.min(5, n) * 5;: Se calculează un discount bazat pe numărul de produse (n). Discount-ul este minimul dintre 5 și n, înmulțit cu 5.
+			--pretFinal = totalPret * (1 - discount / 100);: aplicam discountul si calculam pretul final al setului
+	
+
+
+
+
+
+14)CEL MAI IEFTIN PRODUS->produse.js-cheapestProducts si produse.css sale-tag
+->varproducts=document.querySelectorAll(".produs")
+	--ii trage datele(o lista cu elem care au clasa "produs") din produse.ejs
+
+->var productContainer--ia containerul pt a l manipula in HTML sa l modifice pt a plasa tagul SALE
+->product.querySelector(".val-nume").textContent === cheapestProduct.productName: Condiția care verifică dacă numele produsului din DOM este egal cu numele produsului cu cel mai mic preț.
+
+->produse.css .sale-tag
+
+11)MODAL-> in produse.ejs si in produse.js si in produse.css si se numeste modal si close pt stilizarea butonului x
+->la click ii da display de tip block ;
+->in productDetails - se stocheaza tot ce vrem despre produs
+->&times e simblolul de x pt a inchide fereastra la click pe x;
+->cursor pointer iti face x ul clickabil
+->focus pt a indica vizual ca ai ajuns pe buton un fel de focalizare cand esti pe el cu mouse ul
+
+9)CAROUSEL
+->produs.ejs 43-65
+	--data ride deruleaza automat pozele
+	--carousel control next prev clase predefinite pt navigare boots si cu icon pt sagetele sa apara
+	
+	!!!!--pt functionalitate sunt scrpturile 3.5.1,4.5.2
+
+
+
+
+
+
+-------------------------------------------------------ETAPA 7 --------------------------------------------------------------------------------------------------------------------------------------
+
+->task UTLIMUL PRODUS accepta cookies  in banner->ultimProdus.js
+
+	getCookie:--document.cookie=\${nume}=${val}; path=/ ;expires=${d.toUTCString()}`;`:Setează cookie-ul cu numele și valoarea specificate, adăugând și data de expirare în format UTC.
+		  --if (param.trim().startsWith(nume+"=")){ ... }:Verifică dacă elementul curent începe cu numele cookie-ului căutat.
+	          --return param.split("=")[1]:Dacă condiția este îndeplinită, returnează valoarea cookie-ului (partea de după =).(c1=nnn;c2=...,daca numele e c1 luam ce e dupa egal);
+	
+	deleteCookie(nume):--console.log(\${nume}; expires=${(new Date()).toUTCString()}`)`:Afișează în consolă string-ul care va fi folosit pentru a șterge cookie-ul.
+		           --document.cookie=\${nume}=0; expires=${(new Date()).toUTCString()}`;`:Setează valoarea cookie-ului la 0 și îi setează data de expirare la momentul curent, astfel cookie-ul este șters.
+
+	Evenimentul window.onload:--if(this.window.location.pathname.startsWith("/produs/")){ ... }:Verifică dacă URL-ul paginii începe cu /produs/.
+		     	  	  --if (getCookie("ultimulProdus")){ ... }:Verifică dacă există deja un cookie numit ultimulProdus.
+				  --setCookie("ultimulProdus",window.location.pathname,100000);:Dacă nu există, setează cookie-ul ultimulProdus cu calea URL-ului curent și timpul de expirare de 100000 milisecunde.
+				  --if (getCookie("ultimulProdus")){ ... }:Verifică din nou dacă cookie-ul ultimulProdus există.
+				  --let p = document.createElement("p");:Creează un paragraf.
+
+->ANIMATIE BANNER (COOKIES) -->footer.ejs banner-1 si stil.css linia 174-200 pt cookies.js
+	stil.css:--@keyframes showBanner
+		--0%:La începutul animației:
+			-->transform: translate(-100%, 100%);: Elementul este deplasat complet în afara ecranului, în partea stângă-jos.
+			-->opacity: 0;: Elementul este complet transparent.
+
+		--100%:La sfârșitul animației:
+			-->transform: translate(0, 0);: Elementul este adus la poziția sa finală pe ecran, în colțul stâng-jos.
+			-->opacity: 0.75;: Elementul devine parțial transparent, cu o opacitate de 0.75.
+	cookies.js-ok cookies este butonul;
+
+->ACCESBD
+	--->Pool-ul limitează numărul maxim de conexiuni deschise simultan, evitând astfel supraîncărcarea serverului de baze de date.
+
+	Clasa
+	--->#instanta și #initializat sunt variabile private statice care controlează instanțierea clasei.
+	--->Constructorul aruncă erori dacă clasa a fost deja instanțiată sau dacă nu este apelată corect din metoda getInstanta. pt  a face o coenxiune unica
+	
+	--->initLocal inițializează un client PostgreSQL cu detalii specifice de conexiune și îl conectează.
+	--->getClient returnează clientul PostgreSQL dacă clasa a fost instanțiată.
+
+	--->GetInstanta(instantierea propriu-zisa)->singleton->returnează instanța unică a clasei AccesBD->ori o creeaza si o returneaza daca nu exista ori o returneaza direct daca exista.
+
+	--->Select->conditiiAnd (array): O listă de condiții pentru clauza WHERE, concatenate cu operatorul AND.
+		  ->callback (function): O funcție callback care va fi apelată după ce query-ul este executat.
+		  ->parametriQuery (array): Un array de parametri care vor fi utilizați pentru a preveni SQL injection
+		  ->Dacă conditiiAnd conține elemente, acestea sunt concatenate într-un string folosind operatorul and si string-ul rezultat este atribuit lui conditieWhere
+		  ->un select construit in functie de comanda clientului
+
+	--->SelectAsync->await pt a executa dupa ce se termina interogarea catre baza de date .
+->ROLURI 
+	--->super() apelează constructorul clasei de bază (părinte). Aceasta asigură că toate proprietățile și metodele definite în clasa de bază sunt corect inițializate pentru instanța curentă a clasei derivate.
+	--->Apelarea super() în aceste clase derivate asigură că proprietatea 'cod' este setată corect în fiecare instanță creată, folosind valoarea definită de getter-ul 'tip' specific fiecărei clase derivate
+	--->cod: Este inițializată în constructorul fiecărei clase derivate cu super(), care apelează constructorul clasei de baza și setează 'cod' cu valoarea specifică acelui tip de rol.
+	--->factory->Metodă Statică creeazaRol:
+		-Primește ca parametru un tip.
+		-Creează și returnează o instanță a clasei corespunzătoare în funcție de tip:
+		-Dacă tip este "admin", returnează un RolAdmin.
+		-Dacă tip este "moderator", returnează un RolModerator.
+		-Dacă tip este "comun", returnează un RolClient
+
+--------------------------------------------------ETAPA 8 -----------------------------------------------------------------------------------------------------------------------------
+INDEX.JS 422-692
+inregistrare.ejs
+
+
+---------------------------etapa 9-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CHAT index.js 989,chat.ejs +stilizare,
+formular.ejs

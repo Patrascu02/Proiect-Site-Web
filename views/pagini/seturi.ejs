@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta name="keywords" content ="Nike,Jordan,Adidas,incaltaminte,sneaker,adidas,magazin de adidasi,sneakersi,adidasi,adidasi Bucuresti,sneakersi Bucuresti,Sneakers4You Bucuresti,magazin Sneakers4You,magazin de adidasi Bucuresti,adidasi Nike,adidasi Jordan,adidasi Adidas,sneakersi Nike,sneakersi Adidas,sneakersi Jordan">
+    <meta name="description" content="Descoperă cei mai cool sneakerși. Bucură-te de transport gratuit pentru orice comandă mai mare de 250 ron. Colecția de adidasi care întorc privirile o găsești pe Sneakers4You,cel mai bun magazin de adidasi din Bucuresti."><!--descrierea paginii,-->
+    <title>Sneakers4You</title>
+    <link rel="stylesheet" href="/resurse/css/seturi.css" type="text/css" />
+    <title>Sneakers4You - seturi produse</title>
+    <%- include("../fragmente/head") %>
+</head>
+<body>
+
+<%- include("../fragmente/header") %>
+
+<main>
+    <div id="center-title">
+        <div id="inside">
+            <h2 style="font-size: 40px;color: blue;">Seturi de produse</h2>
+        </div>
+    </div>
+    <section id="produse">
+        
+        <div class="grid-produse">
+            <% 
+                
+                let groupedSets = {};//ob pt grupare dupa id_set
+                locals.seturi.forEach(product => {
+                    if (!groupedSets[product.id_set]) {//daca nu are set
+                        groupedSets[product.id_set] = {
+                            nume_set: product.nume_set,
+                            descriere_set: product.descriere_set,
+                            products: []
+                        };
+                    }
+                    groupedSets[product.id_set].products.push(product);
+                });
+                
+                
+                Object.keys(groupedSets).forEach(setId => {
+                    let set = groupedSets[setId];//primeste ob asociat setului curent
+                    let totalPret = 0;
+                    set.products.forEach(product => {
+                        totalPret += parseFloat(product.pret);
+                    });
+                    let n = set.products.length;
+                    let discount = Math.min(5, n) * 5;
+                    let pretFinal = totalPret * (1 - discount / 100);
+            %>
+                <article class="set_produs">
+                    <div class="contain-set">
+                        <div style="text-align: center;border: 3px solid blue;width: 100%;padding: 1em;margin-bottom: 1em;">
+                            <h3 style><%= set.nume_set %></h3>
+                            <p><b><%= set.descriere_set %></b></p>
+                        </div>
+                        
+                        <ul class="ul-design">
+
+                            <% set.products.forEach(product => { %>
+                                
+                                <li class="item-design">   
+                                    <div style="padding: 2em 2em;">  
+                                        <h3 class="nume">Nume: <a href="/produs/<%-product.id_produs %>" ><span class="val-nume"><%- product.nume%></span></a></h3>
+                                        <p>Pret: <span class="pret"><%- product.pret %> </span></p>
+                                        <p>Descriere: <span class="descriere"><%- product.descriere %> </span></p>
+                                        <p>Marime: <span class="marime"><%- product.marime %> </span></p>
+                                        <p>Material: <span class="material"><%- product.material %> </span></p>
+                                        <p>Categorie: <span class="categorie"><%- product.categorie %> </span></p>
+                                        <a href="/produs/<%= product.id_produs%>">
+                                            <img style="width: 300px; height: 300px;" src="/resurse/imagini/galerie/<%= product.imagine %>" alt="<%= product.nume %>">
+                                        </a>
+                                    </div>
+                                </li>
+                                
+                            <% }); %>
+                        </ul>
+                        <p style="text-align: center;font-weight: bolder;color: cyan;font-size: 40px;"><b>PRET TOTAL SET: <%= pretFinal.toFixed(2) %> RON</b></p>
+                    </div>
+                    
+                </article>
+            <% }); %>
+        </div>
+    </section>
+</main>
+
+<%- include("../fragmente/footer") %>
+</body>
+</html>

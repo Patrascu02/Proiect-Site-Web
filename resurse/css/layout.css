@@ -1,0 +1,173 @@
+html{
+    font-size: 18px;
+}
+
+#grid-pagina{
+    display:grid;
+    gap: 10px;
+    grid-template-columns: repeat(5,1fr)/*1fr 1fr 1fr 1fr*/;
+    grid-template-areas: "welcome welcome welcome welcome welcome"
+                         "orar orar orar oferte oferte"
+                         "utilizatori-online date-utilizator date-utilizator oferte oferte"
+                         "utilizatori-online date-utilizator date-utilizator oferte oferte"
+                         "anunturi  anunturi  calendar-evenimente calendar-evenimente date-site-server"
+}
+
+#grid-pagina>*{
+    border: 2px solid #032A8E;
+    padding: 1em;
+}
+
+.hr-stilizat {
+    height: 20px; 
+    border: none; 
+    background-image: repeating-linear-gradient(to bottom, var(--culoare-fundal) ,
+     var(--culoare-2) 3px, var(--culoare-2) 3px, var(--culoare-2) 4px); /* Gradient liniar repetitiv cu bare negre și gri */
+    border-radius: 10px; 
+    margin: 20px 0; 
+  }
+  
+  
+  
+  
+
+#welcome{
+    grid-area: welcome;
+}
+
+#orar{
+    grid-area: orar;
+}
+
+#calendar-evenimente{
+    grid-area: calendar-evenimente;
+}
+
+#anunturi{
+    grid-area: anunturi;
+}
+
+#utilizatori-online{
+    grid-area: utilizatori-online;
+}
+
+#date-utilizator{
+    grid-area: date-utilizator;
+}
+
+
+#date-site-server{
+    grid-area: date-site-server;
+}
+
+#oferte{
+    grid-area: oferte;
+}
+
+
+
+.welcome
+{
+    font-size: 1.5rem;
+}
+.oferte
+{
+    font-size: 1.5rem;
+}
+
+#grid-pagina>figure{
+    margin :0;
+}
+
+.fig2
+{
+    width: 50%;
+}
+
+
+@media screen and (max-width:1200px){
+    html{
+        font-size: 15px;
+    }
+
+    #grid-pagina{
+        grid-template-columns: repeat(2,1fr);
+         grid-template-areas:   "welcome welcome"
+                                "orar utilizatori-online"
+                                "oferte oferte"
+                                "date-utilizator date-utilizator "
+                                "calendar-evenimente date-site-server"
+                                "anunturi  anunturi "
+    }
+}
+
+@media screen and (max-width:800px){
+    html{
+        font-size: 12px;
+    }
+
+    #grid-pagina{
+        display: block;
+    }
+}
+
+.container{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/*seturi*/
+#produse {
+    padding: 2em 2em;
+    margin: 0 auto;
+}
+
+#center-title {
+    text-align: center;
+    width: 100%;
+    box-shadow: 2px 2px 5px 5px blueviolet;
+}
+
+#inside {
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.ul-design {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 1em;
+    list-style-type: none; 
+    padding: 0;
+}
+
+.set_produs {
+    border: 3px solid greenyellow;
+    padding: 1em;
+}
+
+.contain-set {
+    display: block;
+}
+
+.grid-produse {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+}
+
+.item-design{
+    text-align: center;
+    border: 3px solid blueviolet;
+}
+
+
+@media screen and (max-width: 700px) {
+    .grid-produse {
+        display: block;
+    }
+
+    .ul-design {
+        grid-template-columns: 1fr; 
+    }
+}
